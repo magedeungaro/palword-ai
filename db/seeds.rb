@@ -7,3 +7,43 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+elements = {
+  fire: 'Strong against grass and ice, weak against water.',
+  water: 'Strong against fire, weak against electricity.',
+  electric: 'Strong against water, weak against ground.',
+  ground: 'Strong against electric, weak against grass.',
+  grass: 'Strong against ground, weak against fire.',
+  ice: 'Strong against dragon, weak against fire.',
+  dragon: 'Strong against dark, weak against ice.',
+  dark: 'Strong against neutral, weak against dragon.',
+  neutral: 'Weak against dark.',
+}
+
+
+elements.each do |key, value|
+  Element.find_or_create_by!(name: key).tap do |element|
+    element.description = value
+  end
+end
+
+work_suitabilities = {
+  kindling: 'Can heat campfires, cooking pots and industrial ovens.',
+  watering: 'Can water plants, and power the crusher.',
+  planting: 'Can sow seeds.',
+  :"generating electricity": 'Can power generators.',
+  handiwork: 'Can do handiwork, such as crafting or building. Can also be put in factories to mass produce items.',
+  gathering: 'Can gather crops from farms.',
+  lumbering: 'Can gather lumber from trees.',
+  mining: 'Can mine rocks, such as coal, surfur, ore, stone and paldium.',
+  :"medicine production": 'Can produce medicinal items.',
+  cooling: 'Can cool refrigerators and similar devices.',
+  transporting: 'Can transport items arounde the base.',
+  farming: 'Can drop specific items when assigned to a ranch.',
+}
+
+work_suitabilities.each do |key, value|
+  WorkSuitability.find_or_create_by!(name: key).tap do |work_suitability|
+    work_suitability.description = value
+  end
+end
