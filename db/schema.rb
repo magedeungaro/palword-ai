@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_12_220051) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_12_220334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_220051) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pal_elements", force: :cascade do |t|
+    t.bigint "pal_id", null: false
+    t.bigint "element_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["element_id"], name: "index_pal_elements_on_element_id"
+    t.index ["pal_id"], name: "index_pal_elements_on_pal_id"
+  end
+
+  create_table "pal_work_suitabilities", force: :cascade do |t|
+    t.integer "level"
+    t.bigint "pal_id", null: false
+    t.bigint "work_suitability_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pal_id"], name: "index_pal_work_suitabilities_on_pal_id"
+    t.index ["work_suitability_id"], name: "index_pal_work_suitabilities_on_work_suitability_id"
   end
 
   create_table "pals", force: :cascade do |t|
@@ -46,4 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_220051) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "pal_elements", "elements"
+  add_foreign_key "pal_elements", "pals"
+  add_foreign_key "pal_work_suitabilities", "pals"
+  add_foreign_key "pal_work_suitabilities", "work_suitabilities"
 end
