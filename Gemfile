@@ -65,3 +65,7 @@ end
 gem "devise", "~> 4.9"
 
 gem "annotate", "~> 3.2"
+
+gem "nokogiri", "~> 1.16"
+
+gem "open-uri", "~> 0.4.1"
