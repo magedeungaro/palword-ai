@@ -9,7 +9,7 @@ class Scraper
 
   def scrape
     validate_types
-    html.xpath(@main_target).each do |element|
+    html.search(@main_target).each do |element|
       yield(element)
     end
   end
@@ -17,7 +17,7 @@ class Scraper
   private
 
   def html
-    @html ||= Nokogiri::HTML(URI.open(@url))
+    @html ||= Nokogiri::HTML.parse(URI.open(@url).read)
   end
 
   def validate_types

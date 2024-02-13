@@ -21,10 +21,8 @@ elements = {
 }
 
 
-elements.each do |key, value|
-  Element.find_or_create_by!(name: key).tap do |element|
-    element.description = value
-  end
+elements.each do |name, description|
+  Element.find_or_create_by!(name:, description:)
 end
 
 work_suitabilities = {
@@ -42,8 +40,8 @@ work_suitabilities = {
   farming: 'Can drop specific items when assigned to a ranch.',
 }
 
-work_suitabilities.each do |key, value|
-  WorkSuitability.find_or_create_by!(name: key).tap do |work_suitability|
-    work_suitability.description = value
-  end
+work_suitabilities.each do |name, description|
+  WorkSuitability.find_or_create_by!(name:, description:)
 end
+
+Rake::Task['pals:scrape'].invoke
