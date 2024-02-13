@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePalElements < ActiveRecord::Migration[7.1]
   def change
     create_table :pal_elements do |t|

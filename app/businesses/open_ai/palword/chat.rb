@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module OpenAi
   module Palword
     class Chat
-      GPT_MODEL = "gpt-3.5-turbo-0613"
+      GPT_MODEL = 'gpt-3.5-turbo-0613'
       TEMPERATURE = 0.7
 
       def initialize
@@ -51,24 +53,24 @@ module OpenAi
             functions: ::OpenAi::Sql::Palword.functions
           }
         )
-        
+
         response.deep_symbolize_keys if response.is_a?(Hash)
       end
 
       def instruction
         {
           role: :system,
-          content: "You are a palword expert. Your job is to answer " +
-                    "questions about pal word elemental strongness " +
-                    "and weaknesses, as well as work suitabilities efficiently. " +
-                    "Ask for clarifications if a user request is ambiguous."
+          content: 'You are a palword expert. Your job is to answer ' \
+            'questions about pal word elemental strongness ' \
+            'and weaknesses, as well as work suitabilities efficiently. ' \
+            'Ask for clarifications if a user request is ambiguous.'
         }
       end
 
       def execute_function_call(message)
         function = message.dig(:tool_calls, 0, :function, :name).to_sym
         return "#{function} is not a valid function." unless ToolCalls.respond_to?(function)
-          
+
         params = message.dig(:tool_calls, 0, :function, :arguments)
         ToolCalls.method(function).call(params)
       end

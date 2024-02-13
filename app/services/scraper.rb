@@ -1,14 +1,14 @@
+# frozen_string_literal: true
+
 class Scraper
   def initialize(url:, main_target:)
     @url = url
     @main_target = main_target
   end
 
-  def scrape
+  def scrape(&block)
     validate_types
-    html.search(@main_target).each do |element|
-      yield(element)
-    end
+    html.search(@main_target).each(&block)
   end
 
   private
@@ -18,8 +18,8 @@ class Scraper
   end
 
   def validate_types
-    unless @main_target.is_a?(String) || @url.is_a?(String)
-      raise ArgumentError, "main_target and url must be a String"
-    end
+    return if @main_target.is_a?(String) || @url.is_a?(String)
+
+    raise ArgumentError, 'main_target and url must be a String'
   end
 end
