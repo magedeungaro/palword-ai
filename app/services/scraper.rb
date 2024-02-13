@@ -1,6 +1,3 @@
-require 'open-uri'
-require 'nokogiri'
-
 class Scraper
   def initialize(url:, main_target:)
     @url = url
