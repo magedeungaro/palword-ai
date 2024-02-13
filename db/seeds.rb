@@ -33,7 +33,7 @@ work_suitabilities = {
   handiwork: 'Can do handiwork, such as crafting or building. Can also be put in factories to mass produce items.',
   gathering: 'Can gather crops from farms.',
   lumbering: 'Can gather lumber from trees.',
-  mining: 'Can mine rocks, such as coal, surfur, ore, stone and paldium.',
+  mining: 'Can mine rocks, such as coal, sulfur, ore, stone and paldium.',
   :"medicine production" => 'Can produce medicinal items.',
   cooling: 'Can cool refrigerators and similar devices.',
   transporting: 'Can transport items arounde the base.',
