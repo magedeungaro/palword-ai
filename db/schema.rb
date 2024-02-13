@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_220334) do
   enable_extension "plpgsql"
 
   create_table "elements", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.string "name", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_220334) do
   end
 
   create_table "pals", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,8 +59,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_220334) do
   end
 
   create_table "work_suitabilities", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
+    t.string "name", null: false
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,8 +3,8 @@
 # Table name: work_suitabilities
 #
 #  id          :bigint           not null, primary key
-#  description :text
-#  name        :string
+#  description :text             not null
+#  name        :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
