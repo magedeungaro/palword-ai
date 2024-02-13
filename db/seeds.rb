@@ -17,7 +17,7 @@ elements = {
   ice: 'Strong against dragon, weak against fire.',
   dragon: 'Strong against dark, weak against ice.',
   dark: 'Strong against neutral, weak against dragon.',
-  neutral: 'Weak against dark.',
+  neutral: 'Weak against dark.'
 }
 
 
@@ -29,15 +29,15 @@ work_suitabilities = {
   kindling: 'Can heat campfires, cooking pots and industrial ovens.',
   watering: 'Can water plants, and power the crusher.',
   planting: 'Can sow seeds.',
-  :"generating electricity": 'Can power generators.',
+  :"generating electricity" => 'Can power generators.',
   handiwork: 'Can do handiwork, such as crafting or building. Can also be put in factories to mass produce items.',
   gathering: 'Can gather crops from farms.',
   lumbering: 'Can gather lumber from trees.',
   mining: 'Can mine rocks, such as coal, surfur, ore, stone and paldium.',
-  :"medicine production": 'Can produce medicinal items.',
+  :"medicine production" => 'Can produce medicinal items.',
   cooling: 'Can cool refrigerators and similar devices.',
   transporting: 'Can transport items arounde the base.',
-  farming: 'Can drop specific items when assigned to a ranch.',
+  farming: 'Can drop specific items when assigned to a ranch.'
 }
 
 work_suitabilities.each do |name, description|
