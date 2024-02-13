@@ -9,4 +9,6 @@
 #  updated_at  :datetime         not null
 #
 class Element < ApplicationRecord
+  has_many :pal_elements
+  has_many :pals, through: :pal_elements
 end

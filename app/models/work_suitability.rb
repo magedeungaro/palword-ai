@@ -9,4 +9,6 @@
 #  updated_at  :datetime         not null
 #
 class WorkSuitability < ApplicationRecord
+  has_many :pal_work_suitabilities
+  has_many :pals, through: :pal_work_suitabilities
 end
