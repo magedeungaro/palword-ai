@@ -19,6 +19,7 @@ require "action_cable/engine"
 Bundler.require(*Rails.groups)
 require 'open-uri'
 require 'nokogiri'
+require "openai"
 
 module PalwordAi
   class Application < Rails::Application
