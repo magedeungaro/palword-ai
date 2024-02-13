@@ -71,3 +71,5 @@ gem "open-uri", "~> 0.4.1"
 gem "pry", "~> 0.14.2"
 
 gem "ruby-openai", "~> 6.3"
+
+gem "solargraph", "~> 0.50.0"
