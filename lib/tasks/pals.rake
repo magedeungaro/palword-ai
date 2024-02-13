@@ -13,10 +13,10 @@ namespace :pals do
       pal.pal_elements.find_or_create_by!(element:)
     end
 
-    def create_pal_work_suitability(pal, work_suitability)
-      work_suitability_regex = /(?<skill>.*)\sLv(?<level>\d+)/
-      match = work_suitability.text.strip.match(work_suitability_regex)
-      name = match[:skill].downcase
+    def create_pal_work_suitability(pal, work_suitability_el)
+      work_suitability_regex = /(?<skill>.*)\sLv\s*(?<level>\d+)/
+      match = work_suitability_el.text.strip.match(work_suitability_regex)
+      name = match[:skill].downcase.strip
       level = match[:level].to_i
 
       work_suitability = WorkSuitability.find_by(name:)
