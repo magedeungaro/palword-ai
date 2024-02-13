@@ -14,7 +14,7 @@ namespace :pals do
     end
 
     def create_pal_work_suitability(pal, work_suitability)
-      work_suitability_regex = /(?<skill>\w+)\sLv(?<level>\d+)/
+      work_suitability_regex = /(?<skill>.*)\sLv(?<level>\d+)/
       match = work_suitability.text.strip.match(work_suitability_regex)
       name = match[:skill].downcase
       level = match[:level].to_i
