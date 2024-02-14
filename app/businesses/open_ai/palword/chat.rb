@@ -3,7 +3,7 @@
 module OpenAi
   module Palword
     class Chat
-      GPT_MODEL = 'gpt-3.5-turbo-0613'
+      GPT_MODEL = 'gpt-4-1106-preview'
       TEMPERATURE = 0.7
 
       def initialize
@@ -17,30 +17,34 @@ module OpenAi
       end
 
       def client
-        @client ||= OpenAI::Client.new
+        @client ||= OpenAI::Client.new do |f|
+          f.response :logger, Logger.new($stdout), bodies: true
+        end
       end
 
       private
 
       def analyze
         response = chat_completion
-        message = response.dig(:choices, 0, :message, :content)
-        return response unless is_valid?(message)
+        message = response.dig(:choices, 0, :message)
+        content = message[:content]
+        @messages << { role: :assistant, content: } if content.present?
 
-        @messages << { role: :assistant, content: message }
+        return unless function_call?(message)
 
-        results = execute_function_call(message) if message[:tool_calls].present?
+        @messages << { role: :assistant, content: message[:function_call].to_json }
+        results = execute_function_call(message)
+
         @messages << {
           role: :function,
-          tool_call_id: message.dig(:tool_calls, 0, :id),
-          name: message.dig(:tool_calls, 0, :function, :name),
+          name: message.dig(:function_call, :name),
           content: results
         }
 
         analyze
       end
 
-      def is_valid?(message)
+      def function_call?(message)
         message.try(:[], :role) == 'assistant' && message.try(:[], :function_call)
       end
 
@@ -68,11 +72,11 @@ module OpenAi
       end
 
       def execute_function_call(message)
-        function = message.dig(:tool_calls, 0, :function, :name).to_sym
+        function = message.dig(:function_call, :name).to_sym
         return "#{function} is not a valid function." unless ToolCalls.respond_to?(function)
 
-        params = message.dig(:tool_calls, 0, :function, :arguments)
-        ToolCalls.method(function).call(params)
+        query = JSON.parse(message.dig(:function_call, :arguments))["query"]
+        ToolCalls.method(function).call(query)
       end
     end
   end
