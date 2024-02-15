@@ -2,20 +2,22 @@ module OpenAi
   module Palword
     class Rules
       class << self
+        @@descriptions = {}
+
         def work_suitabilities
-          return @@work_suitability_description if @@work_suitability_description.present?
+          return @@descriptions[:work_suitabilities] if @@descriptions[:work_suitabilities].present?
 
           descriptions = WorkSuitability.pluck(:name, :description)
                                         .map { |name, description| "#{name}: #{description.downcase}" }
-          @@work_suitability_description = descriptions.unshift('Work Suitabilities').join("\n")
+          @@descriptions[:work_suitabilities] = descriptions.unshift('Work Suitabilities').join("\n")
         end
 
         def elements
-          return @@element_description if @@element_description.present?
+          return @@descriptions[:elements] if @@descriptions[:elements].present?
 
           descriptions = Element.pluck(:name, :description)
                                 .map { |name, description| "#{name}: #{description.downcase}" }
-          @@element_description = descriptions.unshift('Elements').join("\n")
+          @@descriptions[:elements] = descriptions.unshift('Elements').join("\n")
         end
       end
     end

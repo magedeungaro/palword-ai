@@ -36,7 +36,7 @@ work_suitabilities = {
   mining: 'Can mine rocks, such as coal, sulfur, ore, stone and paldium.',
   :"medicine production" => 'Can produce medicinal items.',
   cooling: 'Can cool refrigerators and similar devices.',
-  transporting: 'Can transport items arounde the base.',
+  transporting: 'Can transport items around the base.',
   farming: 'Can drop specific items when assigned to a ranch.'
 }
 

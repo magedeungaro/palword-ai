@@ -54,7 +54,7 @@ module OpenAi
             model: GPT_MODEL,
             messages: @messages,
             temperature: TEMPERATURE,
-            functions: ::OpenAi::Sql::Palword.functions
+            functions: Sql.functions
           }
         )
 
@@ -67,7 +67,9 @@ module OpenAi
           content: 'You are a palword expert. Your job is to answer ' \
             'questions about pal word elemental strongness ' \
             'and weaknesses, as well as work suitabilities efficiently. ' \
-            'Ask for clarifications if a user request is ambiguous.'
+            'Ask for clarifications if a user request is ambiguous.' \
+            "Consider the game's rules: #{Rules.elements}.\n" \
+            "#{Rules.work_suitabilities}"
         }
       end
 
