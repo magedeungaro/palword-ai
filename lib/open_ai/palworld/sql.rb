@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module OpenAi
-  module Sql
-    class Palword
+  module Palword
+    class Sql
       TABLES = %w[pals pal_elements pal_work_suitabilities elements work_suitabilities].freeze
       IGNORE_COLUMNS = %w[created_at updated_at].freeze
 
